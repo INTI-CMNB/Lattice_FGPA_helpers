@@ -1,3 +1,43 @@
+------------------------------------------------------------------------------
+----                                                                      ----
+----  iCE40 PLL examples                                                  ----
+----                                                                      ----
+----  Description:                                                        ----
+----  This is an example of use for the iCE40 PLLs.                       ----
+----                                                                      ----
+----  To Do:                                                              ----
+----  -                                                                   ----
+----                                                                      ----
+----  Author:                                                             ----
+----    - Salvador E. Tropea, salvador inti.gob.ar                        ----
+----                                                                      ----
+------------------------------------------------------------------------------
+----                                                                      ----
+---- Copyright (c) 2016 Salvador E. Tropea <salvador inti.gob.ar>         ----
+---- Copyright (c) 2016 Instituto Nacional de Tecnología Industrial       ----
+----                                                                      ----
+---- Distributed under the GPL v2 or newer license                        ----
+----                                                                      ----
+------------------------------------------------------------------------------
+----                                                                      ----
+---- Design unit:      PLL_2x_LEDs_1(TopLevel) (Entity and architecture)  ----
+---- File name:        pll_2x_leds_1.vhdl                                 ----
+---- Note:             None                                               ----
+---- Limitations:      None known                                         ----
+---- Errors:           None known                                         ----
+---- Library:          work                                               ----
+---- Dependencies:     IEEE.std_logic_1164                                ----
+----                   IEEE.numeric_std                                   ----
+----                   lattice.components                                 ----
+---- Target FPGA:      iCE40HX4K-TQ144                                    ----
+---- Language:         VHDL                                               ----
+---- Wishbone:         None                                               ----
+---- Synthesis tools:  Lattice iCECube2 2016.02.27810                     ----
+---- Simulation tools: GHDL [Sokcho edition] (0.2x)                       ----
+---- Text editor:      SETEdit 0.5.x                                      ----
+----                                                                      ----
+------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
