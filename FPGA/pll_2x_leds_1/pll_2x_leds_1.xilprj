@@ -1,0 +1,7 @@
+Board=kefir_i_hx4k
+Project=pll_2x_leds_1
+Top=PLL_2x_LEDs_1
+Goal=Area_Strong
+Include=lattice,primitives
+Source=pll_2x_leds_1.vhdl
+

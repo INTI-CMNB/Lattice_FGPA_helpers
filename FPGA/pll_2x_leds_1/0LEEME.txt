@@ -1,0 +1,75 @@
+Ejemplo de uso del PLL para multiplicar por 2 y seguir usando el reloj de referencia.
+
+Hay 2 formas de hacerlo, además el core se puede configurar para medir el oscilador
+de referencia.
+
+Placa: Kéfir I (iCE40HX4K-TQ144)
+Oscilador: 24 MHz
+
+1) Oscilador de referencia, sin PLL
+Parámetros: PLL_2F=PLL_2=false
+Bitstream: kefir_i_24_24.bin
+Medido con osciloscopio:
+LED2: 1 s en alto y 1 s en bajo. => 24e6/1 s=24 MHz
+LED3: 1 s en alto y 1 s en bajo. => 24e6/1 s=24 MHz
+Clock A=Clock B=24 MHz
+
+2) Usando 2 frecuencias sintetizadas
+Parámetros: PLL_2F=true PLL_2=false
+Bitstream: kefir_i_48_24.bin
+LED2: 500 ms en alto y 500 ms en bajo. => 24e6/500 ms=48 MHz
+LED3: 1 s en alto y 1 s en bajo. => 24e6/1 s=24 MHz
+Clock A=48 MHz
+Clock B=24 MHz
+
+3) Usando 1 frecuencia sintetizada y la de referencia
+Parámetros: PLL_2F=false PLL_2=true
+Bitstream: kefir_i_24_48.bin
+LED2: 1 s en alto y 1 s en bajo. => 24e6/1 s=24 MHz
+LED3: 500 ms en alto y 500 ms en bajo. => 24e6/500 ms=48 MHz
+Clock A=24 MHz
+Clock B=48 MHz
+
+-------------------------------------------------------------------------------------
+Los parámetros se obtienen usando un Wizard que viene en el iCEcube2:
+
+1) Corro /opt/iCEcube2.2016.02/iCEcube2
+2) Tools | Configure ... | Configure PLL mode ...
+3) Device Family: iCE40
+   Create a new PLL configuration: mypll
+4) Select the number of global networks ... 2
+   How will the PLL Source Clock be driven?
+     * Dedicated Clock Pad (Single Ended)
+     X The PLL source clock will be used on chip without ...
+   How will the PLL output be generated?
+     * Using a feedback path internal to the PLL
+       * No Compensation mode
+   Next ->
+5) Do you wish to specify additional delay on Port A of the PLL?
+   * No
+   Next ->
+6) Input frequency (MHz) 24
+   Output frequency on port A (MHz) 48
+   (The frequency on Port B will be half of the frequency on Port A)
+   X Create a LOCK output port
+   Finish
+7) Resultados:
+PLL Type: SB_PLL40_2F_PAD
+DivR: 0 DivF: 31 DivQ: 3 Filter Range: 2
+Feedback Path: SIMPLE
+Delay Adjustment Mode Relative: FIXED, Fixed Delay Adjustment Relative: 0
+Shitreg Div Mode: 00
+PLL Out Slected (Port A): GENCLK
+PLL Out Slected (Port B): GENCLK_HALF
+
+Según la hoja de datos la ecuación del multiplicador es:
+
+(DIVF+1)/((2**DIVQ)*(DIVR+1))=
+(31  +1)/((2**3   )*(0   +1))=
+      32/8                   =4!!!
+Este valor es el doble de lo que queríamos.
+Basta con corregir DivQ para que sea 4 y da lo que queríamos.
+Esto me hizo perder batante tiempo.
+
+
+

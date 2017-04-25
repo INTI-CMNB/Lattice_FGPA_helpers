@@ -1,0 +1,22 @@
+####################################
+# Kéfir I HX4K Demonstration Design
+# Family & Device:    iCE40HX4K
+# Package:            TQ144
+####################################
+
+# Capacitive-sense buttons
+#set_io BTN1 136 -pullup yes
+#set_io BTN2 134 -pullup yes
+#set_io BTN3 128 -pullup yes
+#set_io BTN4 122 -pullup yes
+
+# LED outputs
+set_io LED1 137
+set_io LED2 135
+set_io LED3 129
+set_io LED4 121
+
+# Clock input
+set_io CLK 49
+
+

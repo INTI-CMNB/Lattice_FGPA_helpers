@@ -1,0 +1,43 @@
+Lattice:
+--------
+Autor: Salvador E. Tropea
+
+Este sub-proyecto contiene cosas específicas de la síntesis con FPGAs de
+Lattice. No está en cvs://fpgatools/lattice porque incluye bibliotecas
+relacionadas con la síntesis. Por lo tanto este directorio complementa
+al anterior.
+
+Motivación:
+-----------
+
+Trabajando con el PLL de la iCE40 fallé en lograr que reconozca la
+bilioteca de Lattice, o peor aún, en mi fuente dice:
+
+library lattice;
+use lattice.components.all;
+...
+   PLL1 : SB_PLL40_2_PAD -- entity lattice.SB_PLL40_2_PAD
+
+No se queja por el "library", ni por el "use", pero luego me dice que
+SB_PLL40_2_PAD no está definido. Si uso:
+
+   PLL1 : entity lattice.SB_PLL40_2_PAD
+
+Me dice que todavía no analizó SB_PLL40_2_PAD.
+Seguro que hay una manera de hacerlo, pero mi workaround fue copiar
+
+/opt/iCEcube2.2016.02/LSE/cae_library/synthesis/vhdl/sb_ice40_components_syn.vhd
+
+Y usarlo por separado. Por lo que acá estaría esa biblioteca.
+Usando xil_project es:
+
+Include=lattice,primitives
+
+Un ejemplo de uso se encuentra en:
+
+./FPGA/pll_2x_leds_1/
+
+Y algo similar en:
+
+cvs:///fpgacores/USB/usb2wb/FPGA/wb_leds_kefir
+

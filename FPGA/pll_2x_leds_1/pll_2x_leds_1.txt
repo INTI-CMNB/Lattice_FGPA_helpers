@@ -1,0 +1,13 @@
+Revision: 1.1 - vie sep 23 09:44:20 ART 2016
+Entity: PLL_2x_LEDs_1 | Part: iCE40HX4K-TQ144 | Optimized for: N/A | Constrained: 
+Synthesis tool: Lattice 2016.02.27810
+xil_project.pl version: 0.5.7
+
+Flip Flops:    54/3520     1.53 %
+LUTs:          92/3520     2.61 %
+Cells:        108/3520     3.07 %
+--------------------------------------------------------------------------------
+Max. Clock:   109.56 MHz ( 9.13 ns) [CLK]
+********************************************************************************
+
+
